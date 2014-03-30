@@ -7,7 +7,7 @@ class Vertex(object):
         self.obj = obj
         self.neighbours = {}
 
-    def to_path(self, key, weighting):
+    def path(self, key, weighting):
         self.neighbours[key] = weighting
 
 
@@ -52,8 +52,8 @@ def get_route(previous, source, destination):
 
 
 def add_undirected_edge(vertices, a, b, weighting):
-    vertices[a].to_path(b, weighting)
-    vertices[b].to_path(a, weighting)
+    vertices[a].path(b, weighting)
+    vertices[b].path(a, weighting)
 
 
 def create_graph():
