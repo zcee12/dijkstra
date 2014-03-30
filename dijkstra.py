@@ -1,5 +1,4 @@
 import string
-import copy
 
 
 class Vertex(object):
@@ -16,13 +15,13 @@ def dijkstra(graph, source):
     previous = dict.fromkeys(graph.keys())
 
     distances[source] = 0
-    q = copy.deepcopy(graph)
+    q = graph.keys()
 
     while(q):
         u, min_distance = get_shortest_path(q, distances)
         if min_distance == float("inf"):
             break
-        del q[u]
+        q.remove(u)
 
         # Loop over each neighbour of u
         for key, distance in graph[u].neighbours.iteritems():
@@ -35,7 +34,7 @@ def dijkstra(graph, source):
 
 def get_shortest_path(q, distances):
     min_distance = float("inf")
-    for key, vertex in q.iteritems():
+    for key in q:
         if distances[key] < min_distance:
             u, min_distance = key, distances[key]
     return u, min_distance
